@@ -87,7 +87,7 @@
 <!-- Header -->
 <div class="sticky-top bg-white" style="border-bottom:3px solid #fd7e14">
     <div class="container-fluid px-3 py-2 d-flex align-items-center gap-2">
-        <a href="<?= base_url() ?>" class="btn btn-sm btn-outline-secondary">
+        <a href="<?= base_url('cardapio') ?>" class="btn btn-sm btn-outline-secondary">
             <i class="fa-solid fa-arrow-left"></i>
         </a>
         <span class="fw-bold fs-5">Carrinho</span>
@@ -109,7 +109,7 @@
             <div class="fw-bold" style="font-size:1.6rem; color:#fd7e14" id="cart-total">R$ 0,00</div>
         </div>
         <div class="d-flex gap-2">
-            <a href="<?= base_url() ?>" class="btn btn-outline-secondary flex-fill flex-md-grow-0">
+            <a href="<?= base_url('cardapio') ?>" class="btn btn-outline-secondary flex-fill flex-md-grow-0">
                 <i class="fa-solid fa-xmark me-1"></i>Cancelar
             </a>
             <a href="<?= base_url('checkout') ?>" class="btn text-white fw-semibold flex-fill flex-md-grow-0" style="background-color:#fd7e14" id="btn-confirm">
@@ -123,7 +123,7 @@
 
 <?= $this->section('scripts') ?>
 <script>
-    const BASE_URL = "<?= base_url() ?>";
+    const BASE_URL = "<?= base_url('cardapio') ?>";
 </script>
 <script src="<?= base_url('assets/js/cart.js') ?>"></script>
 <?= $this->endSection() ?>
