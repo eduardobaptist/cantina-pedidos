@@ -201,5 +201,6 @@
     const CANTINA_URL = "<?= rtrim(env('CANTINA_URL', 'http://localhost/cantina/'), '/') . '/' ?>";
     const API_KEY     = "<?= env('API_KEY') ?>";
 </script>
+<script src="<?= base_url('assets/js/totem-guard.js') ?>"></script>
 <script src="<?= base_url('assets/js/checkout.js') ?>"></script>
 <?= $this->endSection() ?>

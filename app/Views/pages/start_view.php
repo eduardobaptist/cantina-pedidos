@@ -1,6 +1,6 @@
 <?= $this->extend('templates/template') ?>
 
-<?= $this->section('title') ?>Cantina<?= $this->endSection() ?>
+<?= $this->section('title') ?>Cantina (totem)<?= $this->endSection() ?>
 
 <?= $this->section('styles') ?>
 <style>
@@ -40,16 +40,30 @@
     <button id="btn-iniciar" class="btn btn-iniciar fw-bold">
         <i class="fa-solid fa-play me-2"></i>Iniciar pedido
     </button>
+    <div id="totem-badge" class="mt-4 text-muted small d-none">
+        <i class="fa-solid fa-tablet-screen-button me-1"></i>
+        <span id="totem-desc"></span>
+    </div>
 </div>
 
 <?= $this->endSection() ?>
 
 <?= $this->section('scripts') ?>
 <script>
-    const totemParam = new URLSearchParams(window.location.search).get('totem');
-    if (totemParam) {
-        localStorage.setItem('cantina_totem', totemParam);
-    }
+    (function () {
+        const raw = localStorage.getItem('cantina_totem');
+        let totem = null;
+        try { totem = raw ? JSON.parse(raw) : null; } catch (e) {}
+
+        if (!totem || !totem.id) {
+            window.location.href = "<?= base_url('configurar') ?>";
+            return;
+        }
+
+        const badge = document.getElementById('totem-badge');
+        document.getElementById('totem-desc').textContent = totem.descricao + ' (ID #' + totem.id + ')';
+        badge.classList.remove('d-none');
+    })();
 
     document.getElementById('btn-iniciar').addEventListener('click', function () {
         localStorage.removeItem('cantina_cart');

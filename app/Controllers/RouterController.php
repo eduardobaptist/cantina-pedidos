@@ -25,4 +25,9 @@ class RouterController extends BaseController
     {
         return view('pages/checkout_view');
     }
+
+    public function configurar()
+    {
+        return view('pages/totem_setup_view');
+    }
 }

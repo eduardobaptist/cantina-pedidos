@@ -77,7 +77,7 @@ async function confirmOrder() {
       body: JSON.stringify({
         status: "aguardando",
         cliente: name,
-        totem: localStorage.getItem("cantina_totem"),
+        totem: (function () { try { const t = JSON.parse(localStorage.getItem("cantina_totem")); return t ? t.id : null; } catch (e) { return null; } })(),
         produtos: cart.map((item) => ({
           id_produto: item.id,
           quantidade: item.qty,
@@ -85,6 +85,11 @@ async function confirmOrder() {
         })),
       }),
     });
+
+    if (res.status === 403) {
+      clearTotemAndRedirect();
+      return;
+    }
 
     if (!res.ok) {
       throw new Error("HTTP " + res.status);
@@ -101,8 +106,7 @@ async function confirmOrder() {
 }
 
 function startUrl() {
-  const totem = localStorage.getItem("cantina_totem");
-  return totem ? BASE_URL + "?totem=" + encodeURIComponent(totem) : BASE_URL;
+  return BASE_URL;
 }
 
 function showConfirmed(name, orderNumber) {

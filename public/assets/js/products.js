@@ -89,6 +89,7 @@ function renderProducts(produtos) {
 
 async function loadProducts() {
     const grid = document.getElementById('product-grid');
+    if (!(await verifyTotem())) return;
     try {
         const res = await fetch(CANTINA_URL + 'api/produtos', {
             headers: { 'X-API-Key': API_KEY },

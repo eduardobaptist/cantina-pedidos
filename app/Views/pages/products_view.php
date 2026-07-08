@@ -128,8 +128,10 @@
 
 <?= $this->section('scripts') ?>
 <script>
+    const BASE_URL    = "<?= base_url() ?>";
     const CANTINA_URL = "<?= rtrim(env('CANTINA_URL', 'http://localhost/cantina/'), '/') . '/' ?>";
     const API_KEY     = "<?= env('API_KEY') ?>";
 </script>
+<script src="<?= base_url('assets/js/totem-guard.js') ?>"></script>
 <script src="<?= base_url('assets/js/products.js') ?>"></script>
 <?= $this->endSection() ?>
